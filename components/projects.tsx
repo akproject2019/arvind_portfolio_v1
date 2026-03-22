@@ -18,7 +18,7 @@ const projects = [
     impact: "Reduced key loss incidents by 90% and improved audit compliance.",
     category: "IoT",
     tech: ["Kotlin", "BLE", "MVVM", "Room"],
-    image: "/projects/iot-cabinet.jpg",
+    image: "/projects/key-cabinet.png",
   },
   {
     title: "UACHub Door Access",
@@ -139,9 +139,9 @@ const projects = [
   },
 ]
 
-function ProjectCard({ project, index, isInView, onClick }: { 
-  project: typeof projects[0]; 
-  index: number; 
+function ProjectCard({ project, index, isInView, onClick }: {
+  project: typeof projects[0];
+  index: number;
   isInView: boolean;
   onClick: () => void;
 }) {
@@ -152,20 +152,20 @@ function ProjectCard({ project, index, isInView, onClick }: {
       transition={{ delay: 0.1 + index * 0.05, duration: 0.5, type: "spring", stiffness: 100 }}
       layout
     >
-      <Card 
+      <Card
         className="glass border-border/50 overflow-hidden hover:border-primary/50 transition-all duration-500 hover:-translate-y-4 hover:scale-[1.04] hover:shadow-2xl hover:shadow-primary/25 group cursor-pointer h-full card-shine"
         onClick={onClick}
       >
         <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20">
           <div className="absolute inset-0 flex items-center justify-center">
-            <motion.span 
+            <motion.span
               className="text-5xl font-black text-primary/30 group-hover:scale-125 transition-transform duration-500"
               whileHover={{ rotate: 5 }}
             >
               {project.title.charAt(0)}
             </motion.span>
           </div>
-          
+
           {/* Hover Overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-primary/95 to-accent/95 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center gap-4">
             <motion.div
@@ -252,7 +252,7 @@ function ProjectModal({ project, onClose }: { project: typeof projects[0] | null
             {project.category}
           </span>
           <h2 className="text-2xl sm:text-3xl font-bold mt-4 mb-4">{project.title}</h2>
-          
+
           <div className="space-y-4 mb-6">
             <div className="p-4 rounded-lg bg-destructive/10 border border-destructive/20">
               <h4 className="text-sm font-semibold text-destructive mb-1">The Problem</h4>
@@ -299,8 +299,8 @@ export function Projects() {
   const [activeCategory, setActiveCategory] = useState("All")
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null)
 
-  const filteredProjects = activeCategory === "All" 
-    ? projects 
+  const filteredProjects = activeCategory === "All"
+    ? projects
     : projects.filter(p => p.category === activeCategory)
 
   return (
@@ -347,11 +347,10 @@ export function Projects() {
                 key={category}
                 variant={activeCategory === category ? "default" : "outline"}
                 onClick={() => setActiveCategory(category)}
-                className={`transition-all duration-300 ${
-                  activeCategory === category 
-                    ? "shadow-lg shadow-primary/25" 
+                className={`transition-all duration-300 ${activeCategory === category
+                    ? "shadow-lg shadow-primary/25"
                     : "hover:border-primary hover:text-primary"
-                }`}
+                  }`}
               >
                 {category}
               </Button>
