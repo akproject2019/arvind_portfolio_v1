@@ -77,24 +77,26 @@ function ExperienceCard({ experience, index, isInView }: { experience: typeof ex
       className="relative"
     >
       {/* Timeline connector */}
-      <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-primary/50 to-border md:-translate-x-px">
-        {/* Larger animated dot */}
+      <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-primary/50 to-border md:-translate-x-px rounded-full">
+        {/* Larger animated dot with glow */}
         <motion.div 
           initial={{ scale: 0 }}
           animate={isInView ? { scale: 1 } : {}}
           transition={{ delay: 0.3 + index * 0.15, type: "spring", stiffness: 200 }}
-          className="absolute top-8 -left-3 w-7 h-7 rounded-full bg-gradient-to-br from-primary to-accent border-4 border-background shadow-lg shadow-primary/30"
+          className="absolute top-8 -left-3 w-7 h-7 rounded-full bg-gradient-to-br from-primary to-accent border-4 border-background shadow-lg shadow-primary/40 animate-pulse-ring"
         >
-          <div className="absolute inset-1 rounded-full bg-background/20" />
+          <div className="absolute inset-1 rounded-full bg-background/30" />
+          <div className="absolute inset-0 rounded-full bg-primary/20 animate-ping" />
         </motion.div>
       </div>
 
       {/* Card - Increased width */}
       <div className={`md:w-[calc(50%-1rem)] ${index % 2 === 0 ? "md:mr-auto md:pr-6" : "md:ml-auto md:pl-6"} pl-10 md:pl-0`}>
         <Card 
-          className="glass border-border/50 overflow-hidden hover:border-primary/50 transition-all duration-500 hover:shadow-xl hover:shadow-primary/15 hover:scale-[1.02] hover:-translate-y-1 group cursor-pointer"
+          className="glass border-border/50 overflow-hidden hover:border-primary/50 transition-all duration-500 hover:shadow-xl hover:shadow-primary/20 hover:scale-[1.02] hover:-translate-y-2 group cursor-pointer card-shine relative"
           onClick={() => setIsExpanded(!isExpanded)}
         >
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
           <CardContent className="p-6 lg:p-8">
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center gap-4">
@@ -117,14 +119,14 @@ function ExperienceCard({ experience, index, isInView }: { experience: typeof ex
               </motion.div>
             </div>
 
-            <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-4">
-              <div className="flex items-center gap-1.5 bg-secondary/50 px-3 py-1 rounded-full">
+            <div className="flex flex-wrap gap-3 text-sm text-muted-foreground mb-4">
+              <div className="flex items-center gap-2 bg-secondary/50 px-4 py-1.5 rounded-full border border-border/50 hover:border-primary/30 transition-colors">
                 <MapPin className="h-4 w-4 text-primary" />
-                {experience.location}
+                <span className="font-medium">{experience.location}</span>
               </div>
-              <div className="flex items-center gap-1.5 bg-secondary/50 px-3 py-1 rounded-full">
+              <div className="flex items-center gap-2 bg-secondary/50 px-4 py-1.5 rounded-full border border-border/50 hover:border-accent/30 transition-colors">
                 <Calendar className="h-4 w-4 text-accent" />
-                {experience.duration}
+                <span className="font-medium">{experience.duration}</span>
               </div>
             </div>
 

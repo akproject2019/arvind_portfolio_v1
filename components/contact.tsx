@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef, useState } from "react"
-import { Mail, Linkedin, MapPin, Send, CheckCircle, Loader2 } from "lucide-react"
+import { Mail, Linkedin, MapPin, Send, CheckCircle, Loader2, Copy, Check } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -16,18 +16,21 @@ const contactInfo = [
     label: "Email",
     value: "arvindkoli45@gmail.com",
     href: "mailto:arvindkoli45@gmail.com",
+    copyable: true,
   },
   {
     icon: Linkedin,
     label: "LinkedIn",
     value: "linkedin.com/in/arvind-koli",
     href: "https://www.linkedin.com/in/arvind-koli-9546a5a8/",
+    copyable: false,
   },
   {
     icon: MapPin,
     label: "Location",
     value: "Navsari, Gujarat, India",
     href: null,
+    copyable: false,
   },
 ]
 
@@ -36,11 +39,18 @@ export function Contact() {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [copiedEmail, setCopiedEmail] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   })
+
+  const copyEmail = async () => {
+    await navigator.clipboard.writeText("arvindkoli45@gmail.com")
+    setCopiedEmail(true)
+    setTimeout(() => setCopiedEmail(false), 2000)
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -113,22 +123,37 @@ export function Contact() {
                     transition={{ delay: 0.4 + index * 0.1 }}
                   >
                     {item.href ? (
-                      <a
-                        href={item.href}
-                        target={item.href.startsWith("http") ? "_blank" : undefined}
-                        rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                        className="flex items-center gap-4 p-4 rounded-xl glass border border-border/50 hover:border-primary/50 transition-all duration-500 hover:scale-105 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/15 group"
-                      >
-                        <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                          <item.icon className="h-5 w-5 text-primary" />
-                        </div>
-                        <div>
-                          <p className="text-sm text-muted-foreground">{item.label}</p>
-                          <p className="font-medium group-hover:text-primary transition-colors">{item.value}</p>
-                        </div>
-                      </a>
+                      <div className="flex items-center gap-4 p-4 rounded-xl glass border border-border/50 hover:border-primary/50 transition-all duration-500 hover:scale-105 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/15 group">
+                        <a
+                          href={item.href}
+                          target={item.href.startsWith("http") ? "_blank" : undefined}
+                          rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                          className="flex items-center gap-4 flex-1"
+                        >
+                          <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
+                            <item.icon className="h-5 w-5 text-primary group-hover:rotate-6 transition-transform" />
+                          </div>
+                          <div>
+                            <p className="text-sm text-muted-foreground">{item.label}</p>
+                            <p className="font-medium group-hover:text-primary transition-colors">{item.value}</p>
+                          </div>
+                        </a>
+                        {item.copyable && (
+                          <button
+                            onClick={copyEmail}
+                            className="p-2 rounded-lg hover:bg-primary/10 transition-colors"
+                            title="Copy email"
+                          >
+                            {copiedEmail ? (
+                              <Check className="h-4 w-4 text-green-500" />
+                            ) : (
+                              <Copy className="h-4 w-4 text-muted-foreground hover:text-primary transition-colors" />
+                            )}
+                          </button>
+                        )}
+                      </div>
                     ) : (
-                      <div className="flex items-center gap-4 p-4 rounded-xl glass border border-border/50">
+                      <div className="flex items-center gap-4 p-4 rounded-xl glass border border-border/50 hover:border-primary/30 transition-all duration-300">
                         <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                           <item.icon className="h-5 w-5 text-primary" />
                         </div>
