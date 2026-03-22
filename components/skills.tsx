@@ -98,21 +98,22 @@ function SkillCard({ category, index, isInView }: { category: typeof skillCatego
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ delay: 0.1 + index * 0.1, duration: 0.5 }}
+      initial={{ opacity: 0, y: 50, scale: 0.9 }}
+      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+      transition={{ delay: 0.1 + index * 0.1, duration: 0.5, type: "spring", stiffness: 100 }}
     >
       <Card 
-        className="glass border-border/50 h-full hover:border-primary/50 transition-all duration-500 hover:-translate-y-3 hover:scale-[1.03] hover:shadow-2xl hover:shadow-primary/20 group"
+        className="glass border-border/50 h-full hover:border-primary/50 transition-all duration-500 hover:-translate-y-4 hover:scale-[1.04] hover:shadow-2xl hover:shadow-primary/25 group card-shine relative overflow-hidden"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <CardContent className="p-6">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <CardContent className="p-6 relative z-10">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-              <category.icon className="h-6 w-6 text-primary group-hover:scale-110 transition-transform" />
+            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300 group-hover:rotate-3">
+              <category.icon className="h-6 w-6 text-primary group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300" />
             </div>
-            <h3 className="font-bold text-lg">{category.title}</h3>
+            <h3 className="font-bold text-lg group-hover:text-primary transition-colors">{category.title}</h3>
           </div>
 
           <div className="space-y-4">
@@ -122,13 +123,15 @@ function SkillCard({ category, index, isInView }: { category: typeof skillCatego
                   <span className="text-sm font-medium">{skill.name}</span>
                   <span className="text-sm text-muted-foreground">{skill.level}%</span>
                 </div>
-                <div className="h-2 bg-secondary rounded-full overflow-hidden">
+                <div className="h-2.5 bg-secondary rounded-full overflow-hidden relative">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={isInView && isHovered ? { width: `${skill.level}%` } : isInView ? { width: `${skill.level}%` } : { width: 0 }}
                     transition={{ delay: 0.3 + i * 0.1, duration: 0.8, ease: "easeOut" }}
-                    className="h-full bg-gradient-to-r from-primary to-accent rounded-full"
-                  />
+                    className="h-full bg-gradient-to-r from-primary via-primary/80 to-accent rounded-full relative"
+                  >
+                    <span className="absolute inset-0 bg-gradient-to-r from-transparent via-primary-foreground/20 to-transparent animate-pulse" />
+                  </motion.div>
                 </div>
               </div>
             ))}

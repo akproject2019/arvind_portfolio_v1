@@ -10,13 +10,13 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Arvind Koli | Senior Android Developer',
-  description: 'Senior Android Developer with 6+ years of experience building scalable, high-performance mobile apps using Kotlin, Java, and modern architecture patterns.',
-  keywords: ['Android Developer', 'Kotlin', 'Java', 'Mobile Apps', 'MVVM', 'Clean Architecture', 'Jetpack Compose'],
+  title: 'Arvind Koli | Senior Android Developer & Mobile Architect',
+  description: 'Senior Android Developer with 6+ years of enterprise experience architecting scalable, high-performance mobile solutions. Expert in Kotlin, Jetpack Compose, Clean Architecture, and modern Android development patterns.',
+  keywords: ['Senior Android Developer', 'Kotlin Expert', 'Java', 'Mobile App Architect', 'MVVM', 'MVI', 'Clean Architecture', 'Jetpack Compose', 'Android SDK', 'Enterprise Mobile Solutions'],
   authors: [{ name: 'Arvind Koli' }],
   openGraph: {
-    title: 'Arvind Koli | Senior Android Developer',
-    description: 'Building scalable, high-performance Android apps using Kotlin & modern architecture',
+    title: 'Arvind Koli | Senior Android Developer & Mobile Architect',
+    description: 'Architecting enterprise-grade Android solutions that power millions of users. 6+ years delivering high-impact mobile experiences.',
     type: 'website',
   },
 }

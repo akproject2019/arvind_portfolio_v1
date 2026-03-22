@@ -10,22 +10,26 @@ const highlights = [
   {
     icon: Award,
     title: "6+ Years",
-    description: "Professional Experience",
+    description: "Enterprise Experience",
+    highlight: "Senior Level",
   },
   {
     icon: Code2,
     title: "Kotlin & Java",
-    description: "Expert Level",
+    description: "Expert Proficiency",
+    highlight: "100+ Apps",
   },
   {
     icon: Layers,
-    title: "MVVM",
+    title: "MVVM/MVI",
     description: "Clean Architecture",
+    highlight: "Best Practices",
   },
   {
     icon: Cpu,
     title: "Performance",
-    description: "Optimization Focus",
+    description: "40% Crash Reduction",
+    highlight: "Optimization",
   },
 ]
 
@@ -76,19 +80,20 @@ export function About() {
               <Card className="glass border-border/50 p-6 lg:p-8 hover:shadow-xl hover:shadow-primary/10 transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 group">
                 <CardContent className="p-0">
                   <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                    Senior Android Developer with <span className="text-primary font-semibold">6+ years of experience</span> building 
-                    scalable, user-centric mobile applications. I specialize in creating 
-                    high-performance apps that deliver exceptional user experiences.
+                    A results-driven <span className="text-primary font-semibold">Senior Android Developer</span> with over{" "}
+                    <span className="text-primary font-semibold">6+ years of proven expertise</span> in architecting and deploying 
+                    enterprise-scale mobile solutions. I transform complex business requirements into intuitive, 
+                    high-performance applications that serve millions of users.
                   </p>
                   <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                    My expertise spans across <span className="text-accent font-semibold">Kotlin, Java, Jetpack libraries</span>, 
-                    and modern architectural patterns. I&apos;m passionate about writing clean, 
-                    maintainable code and staying current with the latest Android developments.
+                    Mastery in <span className="text-accent font-semibold">Kotlin, Jetpack Compose, Clean Architecture</span>, 
+                    and cutting-edge Android technologies. Committed to engineering excellence through SOLID principles, 
+                    comprehensive testing, and performance optimization that reduces crash rates by up to 40%.
                   </p>
                   <p className="text-lg text-muted-foreground leading-relaxed">
-                    Beyond coding, I enjoy mentoring fellow developers, conducting code reviews, 
-                    and contributing to the Android community. I believe in continuous learning 
-                    and pushing the boundaries of what&apos;s possible in mobile development.
+                    As a technical leader, I drive team success through strategic code reviews, mentorship programs, 
+                    and establishing best practices. Passionate about building scalable systems that not only meet 
+                    today&apos;s demands but anticipate tomorrow&apos;s challenges.
                   </p>
                 </CardContent>
               </Card>
@@ -108,13 +113,16 @@ export function About() {
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.5 + index * 0.1 }}
                 >
-                  <Card className="glass border-border/50 p-6 text-center hover:border-primary/50 transition-all duration-500 hover:-translate-y-3 hover:scale-105 hover:shadow-xl hover:shadow-primary/15 group cursor-default">
+                  <Card className="glass border-border/50 p-6 text-center hover:border-primary/50 transition-all duration-500 hover:-translate-y-3 hover:scale-105 hover:shadow-xl hover:shadow-primary/15 group cursor-default card-shine">
                     <CardContent className="p-0">
-                      <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                        <item.icon className="h-7 w-7 text-primary group-hover:scale-110 transition-transform" />
+                      <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
+                        <item.icon className="h-7 w-7 text-primary group-hover:rotate-12 transition-transform duration-300" />
                       </div>
                       <h3 className="font-bold text-xl mb-1 gradient-text">{item.title}</h3>
-                      <p className="text-sm text-muted-foreground">{item.description}</p>
+                      <p className="text-sm text-muted-foreground mb-2">{item.description}</p>
+                      <span className="inline-block text-xs px-2 py-1 rounded-full bg-accent/20 text-accent font-medium">
+                        {item.highlight}
+                      </span>
                     </CardContent>
                   </Card>
                 </motion.div>

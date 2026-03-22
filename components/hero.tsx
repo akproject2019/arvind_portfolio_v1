@@ -126,9 +126,9 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-4"
+              className="text-5xl sm:text-6xl lg:text-8xl font-black mb-4 tracking-tight"
             >
-              <span className="gradient-text">Arvind Koli</span>
+              <span className="gradient-text text-shimmer">Arvind Koli</span>
             </motion.h1>
 
             <motion.div
@@ -147,8 +147,8 @@ export function Hero() {
               transition={{ delay: 0.5 }}
               className="text-muted-foreground text-lg max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed"
             >
-              Building scalable, high-performance Android apps using Kotlin & modern architecture. 
-              Passionate about clean code and exceptional user experiences.
+              Architecting enterprise-grade Android solutions that power millions of users. 
+              6+ years delivering high-impact mobile experiences with cutting-edge Kotlin & Jetpack technologies.
             </motion.p>
 
             <motion.div
@@ -161,12 +161,13 @@ export function Hero() {
                 <Button
                   asChild
                   size="lg"
-                  className="group relative overflow-hidden bg-primary hover:bg-primary/90 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/25"
+                  className="group relative overflow-hidden bg-primary hover:bg-primary/90 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/30 active:scale-95"
                 >
                   <a href="#projects">
+                    <span className="absolute inset-0 bg-gradient-to-r from-transparent via-primary-foreground/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
                     <span className="relative z-10 flex items-center gap-2">
                       View Projects
-                      <ExternalLink className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      <ExternalLink className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:rotate-12" />
                     </span>
                   </a>
                 </Button>
@@ -177,10 +178,10 @@ export function Hero() {
                   variant="outline"
                   size="lg"
                   asChild
-                  className="group hover:scale-105 transition-all duration-300 hover:border-primary hover:text-primary"
+                  className="group hover:scale-105 transition-all duration-300 hover:border-primary hover:text-primary hover:shadow-lg hover:shadow-primary/20 active:scale-95"
                 >
                   <a href="/resume.pdf" download>
-                    <Download className="mr-2 h-4 w-4 transition-transform group-hover:-translate-y-1" />
+                    <Download className="mr-2 h-4 w-4 transition-transform group-hover:-translate-y-1 group-hover:animate-bounce" />
                     Download Resume
                   </a>
                 </Button>
@@ -191,10 +192,10 @@ export function Hero() {
                   variant="ghost"
                   size="lg"
                   asChild
-                  className="group hover:scale-105 transition-all duration-300"
+                  className="group hover:scale-105 transition-all duration-300 hover:bg-primary/10 active:scale-95"
                 >
                   <a href="#contact">
-                    <Mail className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
+                    <Mail className="mr-2 h-4 w-4 transition-transform group-hover:scale-110 group-hover:rotate-6" />
                     Contact Me
                   </a>
                 </Button>
