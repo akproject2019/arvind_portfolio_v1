@@ -117,7 +117,7 @@ export function Contact() {
                         href={item.href}
                         target={item.href.startsWith("http") ? "_blank" : undefined}
                         rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                        className="flex items-center gap-4 p-4 rounded-xl glass border border-border/50 hover:border-primary/50 transition-all duration-300 group"
+                        className="flex items-center gap-4 p-4 rounded-xl glass border border-border/50 hover:border-primary/50 transition-all duration-500 hover:scale-105 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/15 group"
                       >
                         <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                           <item.icon className="h-5 w-5 text-primary" />
@@ -150,7 +150,7 @@ export function Contact() {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="lg:col-span-3"
             >
-              <Card className="glass border-border/50">
+              <Card className="glass border-border/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-500">
                 <CardContent className="p-6 sm:p-8">
                   {isSubmitted ? (
                     <motion.div

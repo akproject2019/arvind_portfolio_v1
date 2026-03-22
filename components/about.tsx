@@ -73,7 +73,7 @@ export function About() {
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              <Card className="glass border-border/50 p-6 lg:p-8 hover:shadow-xl transition-all duration-500 group">
+              <Card className="glass border-border/50 p-6 lg:p-8 hover:shadow-xl hover:shadow-primary/10 transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 group">
                 <CardContent className="p-0">
                   <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                     Senior Android Developer with <span className="text-primary font-semibold">6+ years of experience</span> building 
@@ -108,7 +108,7 @@ export function About() {
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.5 + index * 0.1 }}
                 >
-                  <Card className="glass border-border/50 p-6 text-center hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg group cursor-default">
+                  <Card className="glass border-border/50 p-6 text-center hover:border-primary/50 transition-all duration-500 hover:-translate-y-3 hover:scale-105 hover:shadow-xl hover:shadow-primary/15 group cursor-default">
                     <CardContent className="p-0">
                       <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                         <item.icon className="h-7 w-7 text-primary group-hover:scale-110 transition-transform" />

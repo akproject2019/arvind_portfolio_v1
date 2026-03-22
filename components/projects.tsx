@@ -125,7 +125,7 @@ function ProjectCard({ project, index, isInView, onClick }: {
       layout
     >
       <Card 
-        className="glass border-border/50 overflow-hidden hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group cursor-pointer h-full"
+        className="glass border-border/50 overflow-hidden hover:border-primary/50 transition-all duration-500 hover:-translate-y-3 hover:scale-[1.04] hover:shadow-2xl hover:shadow-primary/25 group cursor-pointer h-full"
         onClick={onClick}
       >
         <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20">

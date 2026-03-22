@@ -75,7 +75,7 @@ function ExperienceCard({ experience, index, isInView }: { experience: typeof ex
       {/* Card */}
       <div className={`md:w-[calc(50%-2rem)] ${index % 2 === 0 ? "md:mr-auto md:pr-8" : "md:ml-auto md:pl-8"} pl-8 md:pl-0`}>
         <Card 
-          className="glass border-border/50 overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-xl group cursor-pointer"
+          className="glass border-border/50 overflow-hidden hover:border-primary/50 transition-all duration-500 hover:shadow-xl hover:shadow-primary/15 hover:scale-[1.02] hover:-translate-y-1 group cursor-pointer"
           onClick={() => setIsExpanded(!isExpanded)}
         >
           <CardContent className="p-6">

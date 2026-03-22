@@ -103,7 +103,7 @@ function SkillCard({ category, index, isInView }: { category: typeof skillCatego
       transition={{ delay: 0.1 + index * 0.1, duration: 0.5 }}
     >
       <Card 
-        className="glass border-border/50 h-full hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group"
+        className="glass border-border/50 h-full hover:border-primary/50 transition-all duration-500 hover:-translate-y-3 hover:scale-[1.03] hover:shadow-2xl hover:shadow-primary/20 group"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
