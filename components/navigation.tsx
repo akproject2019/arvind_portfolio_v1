@@ -26,7 +26,7 @@ export function Navigation() {
 
   useEffect(() => {
     setMounted(true)
-    
+
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight
@@ -62,9 +62,8 @@ export function Navigation() {
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className={`fixed top-1 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? "glass shadow-lg" : "bg-transparent"
-        }`}
+        className={`fixed top-1 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "glass shadow-lg" : "bg-transparent"
+          }`}
       >
         <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
@@ -76,7 +75,7 @@ export function Navigation() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                AK
+                Arvind Koli
                 <motion.span
                   className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-accent"
                   initial={{ scaleX: 0 }}
@@ -88,33 +87,32 @@ export function Navigation() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-1">
-                  {navItems.map((item, index) => {
-                    const isActive = activeSection === item.href.substring(1)
-                    return (
-                      <motion.a
-                        key={item.name}
-                        href={item.href}
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                        className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 relative hover:scale-105 ${
-                          isActive 
-                            ? "text-primary font-semibold" 
-                            : "text-muted-foreground hover:text-primary"
-                        }`}
-                      >
-                        {isActive && (
-                          <motion.span
-                            layoutId="activeSection"
-                            className="absolute inset-0 bg-primary/15 rounded-full border border-primary/30 shadow-sm shadow-primary/20"
-                            transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                          />
-                        )}
-                        <span className="relative z-10">{item.name}</span>
-                      </motion.a>
-                    )
-                  })}
-              
+              {navItems.map((item, index) => {
+                const isActive = activeSection === item.href.substring(1)
+                return (
+                  <motion.a
+                    key={item.name}
+                    href={item.href}
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 relative hover:scale-105 ${isActive
+                        ? "text-primary font-semibold"
+                        : "text-muted-foreground hover:text-primary"
+                      }`}
+                  >
+                    {isActive && (
+                      <motion.span
+                        layoutId="activeSection"
+                        className="absolute inset-0 bg-primary/15 rounded-full border border-primary/30 shadow-sm shadow-primary/20"
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
+                    <span className="relative z-10">{item.name}</span>
+                  </motion.a>
+                )
+              })}
+
               {/* Theme Toggle */}
               {mounted && (
                 <MagneticWrapper>
@@ -182,11 +180,10 @@ export function Navigation() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.05 }}
                       onClick={() => setIsOpen(false)}
-                      className={`block py-3 px-4 rounded-lg transition-all duration-300 ${
-                        isActive
+                      className={`block py-3 px-4 rounded-lg transition-all duration-300 ${isActive
                           ? "bg-primary/10 text-primary"
                           : "text-muted-foreground hover:bg-primary/5 hover:text-primary"
-                      }`}
+                        }`}
                     >
                       {item.name}
                     </motion.a>
@@ -217,11 +214,10 @@ export function Navigation() {
                 {item.name}
               </span>
               <motion.span
-                className={`w-3 h-3 rounded-full border-2 transition-all duration-300 relative ${
-                  isActive
+                className={`w-3 h-3 rounded-full border-2 transition-all duration-300 relative ${isActive
                     ? "bg-primary border-primary scale-150 shadow-lg shadow-primary/50"
                     : "border-muted-foreground/50 hover:border-primary hover:bg-primary/20"
-                }`}
+                  }`}
                 whileHover={{ scale: 1.5 }}
               >
                 {isActive && (
