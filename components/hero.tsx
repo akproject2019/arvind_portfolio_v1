@@ -255,15 +255,6 @@ export function Hero() {
                                                                 className="object-cover object-top transition-all duration-700 group-hover:scale-125"
                                                                 priority
                                                         />
-
-                                                        <video
-                                                                src="/profile.mp4"
-                                                                autoPlay
-                                                                loop
-                                                                muted
-                                                                playsInline
-                                                                className="absolute inset-0 w-full h-full object-cover object-top transition-all duration-700 group-hover:scale-125"
-                                                        />
                                                 </div>
 
 
