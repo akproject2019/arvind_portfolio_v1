@@ -98,7 +98,7 @@ export function Hero() {
                                                 initial={{ opacity: 0, x: -50 }}
                                                 animate={{ opacity: 1, x: 0 }}
                                                 transition={{ duration: 0.8 }}
-                                                className="flex-1 text-center lg:text-left pt-20 lg:pt-0"
+                                                className="flex-1 text-center lg:text-left"
                                         >
                                                 <motion.div
                                                         initial={{ opacity: 0, scale: 0 }}
@@ -289,4 +289,21 @@ export function Hero() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 1, duration: 0.5 }}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                "
+                                className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors cursor-pointer group"
+                        >
+                                <span className="text-sm">Scroll Down</span>
+                                <motion.div
+                                        animate={{ y: [0, 8, 0] }}
+                                        transition={{ duration: 1.5, repeat: Infinity }}
+                                        className="w-6 h-10 rounded-full border-2 border-current flex items-start justify-center p-1"
+                                >
+                                        <motion.div
+                                                animate={{ y: [0, 12, 0] }}
+                                                transition={{ duration: 1.5, repeat: Infinity }}
+                                                className="w-1.5 h-3 bg-current rounded-full"
+                                        />
+                                </motion.div>
+                        </motion.a>
+                </section>
+        )
+}
