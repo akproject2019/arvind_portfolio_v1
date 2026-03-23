@@ -257,8 +257,6 @@ export function Hero() {
                                                         />
                                                 </div>
 
-
-
                                                 {/* Floating badges */}
                                                 <motion.div
                                                         animate={{ y: [0, -10, 0] }}
