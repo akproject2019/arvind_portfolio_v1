@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { MagneticWrapper } from "./magnetic-wrapper"
 
 const navItems = [
+  { name: "Home", href: "#hero" },
   { name: "About", href: "#about" },
   { name: "Experience", href: "#experience" },
   { name: "Skills", href: "#skills" },
@@ -15,6 +16,13 @@ const navItems = [
   { name: "Testimonials", href: "#testimonials" },
   { name: "Contact", href: "#contact" },
 ]
+
+// ✅ CHANGE 1: Shared smooth scroll handler used across all nav links
+const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  e.preventDefault()
+  const target = document.getElementById(href.substring(1))
+  if (target) target.scrollIntoView({ behavior: "smooth" })
+}
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -69,8 +77,10 @@ export function Navigation() {
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
             <MagneticWrapper>
+              {/* ✅ CHANGE 2: Logo also uses smooth scroll to jump back to #hero */}
               <motion.a
-                href="#"
+                href="#hero"
+                onClick={(e) => scrollToSection(e, "#hero")}
                 className="text-2xl font-bold gradient-text relative"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -93,6 +103,8 @@ export function Navigation() {
                   <motion.a
                     key={item.name}
                     href={item.href}
+                    // ✅ CHANGE 3: Smooth scroll on desktop nav click
+                    onClick={(e) => scrollToSection(e, item.href)}
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
@@ -176,10 +188,14 @@ export function Navigation() {
                     <motion.a
                       key={item.name}
                       href={item.href}
+                      // ✅ CHANGE 4: Smooth scroll on mobile nav click + close menu
+                      onClick={(e) => {
+                        scrollToSection(e, item.href)
+                        setIsOpen(false)
+                      }}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.05 }}
-                      onClick={() => setIsOpen(false)}
                       className={`block py-3 px-4 rounded-lg transition-all duration-300 ${isActive
                           ? "bg-primary/10 text-primary"
                           : "text-muted-foreground hover:bg-primary/5 hover:text-primary"
@@ -208,6 +224,8 @@ export function Navigation() {
             <a
               key={item.name}
               href={item.href}
+              // ✅ CHANGE 5: Smooth scroll on side dot click
+              onClick={(e) => scrollToSection(e, item.href)}
               className="group relative flex items-center justify-end"
             >
               <span className="absolute right-7 px-3 py-1.5 rounded-lg bg-card/95 backdrop-blur-sm border border-border text-xs font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap shadow-lg translate-x-2 group-hover:translate-x-0">

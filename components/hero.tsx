@@ -9,6 +9,7 @@ import { CodeRain } from "./code-rain"
 import { MagneticWrapper } from "./magnetic-wrapper"
 
 const titles = [
+        "Arvind Here",
         "Senior Android Developer",
         "Kotlin Expert",
         "Mobile App Architect",
@@ -55,7 +56,7 @@ export function Hero() {
         }, [displayText, isDeleting, titleIndex])
 
         return (
-                <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+                <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
                         {/* Code Rain Background */}
                         {mounted && <CodeRain />}
 
