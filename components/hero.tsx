@@ -9,7 +9,6 @@ import { CodeRain } from "./code-rain"
 import { MagneticWrapper } from "./magnetic-wrapper"
 
 const titles = [
-        "Arvind Here",
         "Senior Android Developer",
         "Kotlin Expert",
         "Mobile App Architect",
@@ -57,36 +56,48 @@ export function Hero() {
 
         return (
                 <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-                        {/* Code Rain Background */}
-                        {mounted && <CodeRain />}
+
+                        {/* ✅ CHANGE 1: Video background — place your video at /public/profile.mp4 */}
+                        {mounted && (
+                                <video
+                                        autoPlay
+                                        loop
+                                        muted
+                                        playsInline
+                                        className="absolute inset-0 w-full h-full object-cover z-0"
+                                >
+                                        <source src="/profile.mp4" type="video/mp4" />
+                                        <source src="/profile.webm" type="video/webm" />
+                                </video>
+                        )}
+
+                        {/* ✅ CHANGE 2: Dark overlay — keeps text readable over the video */}
+                        <div className="absolute inset-0 bg-background/70 backdrop-blur-[2px] z-[1]" />
+
+                        {/* ✅ CHANGE 3: CodeRain z-index bumped above the overlay */}
+                        {mounted && (
+                                <div className="absolute inset-0 z-[2] opacity-40">
+                                        <CodeRain />
+                                </div>
+                        )}
 
                         {/* Animated Gradient Background */}
-                        <div className="absolute inset-0 animated-gradient opacity-20" />
+                        <div className="absolute inset-0 animated-gradient opacity-10 z-[3]" />
 
                         {/* Floating Orbs */}
-                        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                        <div className="absolute inset-0 overflow-hidden pointer-events-none z-[3]">
                                 <motion.div
-                                        animate={{
-                                                x: [0, 100, 0],
-                                                y: [0, -50, 0],
-                                        }}
+                                        animate={{ x: [0, 100, 0], y: [0, -50, 0] }}
                                         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                                         className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/20 rounded-full blur-3xl"
                                 />
                                 <motion.div
-                                        animate={{
-                                                x: [0, -80, 0],
-                                                y: [0, 60, 0],
-                                        }}
+                                        animate={{ x: [0, -80, 0], y: [0, 60, 0] }}
                                         transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
                                         className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl"
                                 />
                                 <motion.div
-                                        animate={{
-                                                x: [0, 50, 0],
-                                                y: [0, -80, 0],
-                                                scale: [1, 1.2, 1],
-                                        }}
+                                        animate={{ x: [0, 50, 0], y: [0, -80, 0], scale: [1, 1.2, 1] }}
                                         transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
                                         className="absolute top-1/2 right-1/3 w-48 h-48 bg-primary/10 rounded-full blur-2xl"
                                 />
@@ -235,7 +246,6 @@ export function Hero() {
                                                 transition={{ duration: 0.8, delay: 0.3 }}
                                                 className="relative group"
                                         >
-                                                {/* Animated rings */}
                                                 <motion.div
                                                         animate={{ rotate: 360 }}
                                                         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
@@ -290,7 +300,7 @@ export function Hero() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 1, duration: 0.5 }}
-                                className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors cursor-pointer group"
+                                className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors cursor-pointer group z-10"
                         >
                                 <span className="text-sm">Scroll Down</span>
                                 <motion.div
