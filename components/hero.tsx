@@ -9,6 +9,7 @@ import { CodeRain } from "./code-rain"
 import { MagneticWrapper } from "./magnetic-wrapper"
 
 const titles = [
+        "Arvind Here",
         "Senior Android Developer",
         "Kotlin Expert",
         "Mobile App Architect",
@@ -103,7 +104,8 @@ export function Hero() {
                                 />
                         </div>
 
-                        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                        {/* ✅ CHANGE 4: Added pt-20 sm:pt-24 lg:pt-28 — pushes content below fixed navbar so "Available" badge never overlaps header */}
+                        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20 sm:pt-24 lg:pt-28">
                                 <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
                                         {/* Content */}
                                         <motion.div
