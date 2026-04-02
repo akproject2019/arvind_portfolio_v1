@@ -103,7 +103,7 @@ export function Hero() {
                                                                 src="/profile.png"
                                                                 alt="Arvind Koli"
                                                                 fill
-                                                                className="object-cover object-top transition-all duration-700 group-hover:scale-125"
+                                                                className="object-cover object-top transition-all duration-700 group-hover:scale-125 lg:ml-12"
                                                                 priority
                                                         />
                                                 </div>
@@ -125,7 +125,7 @@ export function Hero() {
 </motion.div>
 <motion.div
     animate={{ y: [0, 50, 0] }}
-    transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+    transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.7 }}
     className="absolute -left-12 bottom-1/4 px-3 py-1.5 rounded-full glass border border-accent/30 text-sm font-medium text-accent"
 >
     Dagger - Hilt
