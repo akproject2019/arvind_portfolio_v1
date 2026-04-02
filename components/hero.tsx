@@ -98,12 +98,12 @@ export function Hero() {
                                                 />
 
                                                 <div className="absolute -inset-4 bg-gradient-to-r from-primary via-accent to-primary rounded-full opacity-75 blur-2xl group-hover:opacity-100 transition-opacity duration-500 animate-pulse" />
-                                                <div className="relative w-64 h-64 sm:w-40 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-primary/50 group-hover:border-primary transition-all duration-700 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-2xl group-hover:shadow-primary/30">
+                                                <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-primary/50 group-hover:border-primary transition-all duration-700 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-2xl group-hover:shadow-primary/30">
                                                         <Image
                                                                 src="/profile.png"
                                                                 alt="Arvind Koli"
                                                                 fill
-                                                                className="object-cover object-top transition-all duration-700 group-hover:scale-125 lg:ml-12"
+                                                                className="object-cover object-top transition-all duration-700 group-hover:scale-125"
                                                                 priority
                                                         />
                                                 </div>

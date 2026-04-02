@@ -20,8 +20,18 @@ const navItems = [
 // ✅ CHANGE 1: Shared smooth scroll handler used across all nav links
 const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
   e.preventDefault()
+
   const target = document.getElementById(href.substring(1))
-  if (target) target.scrollIntoView({ behavior: "smooth" })
+  if (target) {
+    const headerOffset = 80 // 👈 adjust based on your navbar height
+    const elementPosition = target.getBoundingClientRect().top + window.pageYOffset
+    const offsetPosition = elementPosition - headerOffset
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    })
+  }
 }
 
 export function Navigation() {
@@ -173,42 +183,71 @@ export function Navigation() {
         </nav>
 
         {/* Mobile Menu */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden glass border-t border-border overflow-hidden"
-            >
-              <div className="container mx-auto px-4 py-4 space-y-1">
-                {navItems.map((item, index) => {
-                  const isActive = activeSection === item.href.substring(1)
-                  return (
-                    <motion.a
-                      key={item.name}
-                      href={item.href}
-                      // ✅ CHANGE 4: Smooth scroll on mobile nav click + close menu
-                      onClick={(e) => {
-                        scrollToSection(e, item.href)
-                        setIsOpen(false)
-                      }}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.05 }}
-                      className={`block py-3 px-4 rounded-lg transition-all duration-300 ${isActive
-                          ? "bg-primary/10 text-primary"
-                          : "text-muted-foreground hover:bg-primary/5 hover:text-primary"
-                        }`}
-                    >
-                      {item.name}
-                    </motion.a>
-                  )
-                })}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+<AnimatePresence>
+  {isOpen && (
+    <>
+      {/* 🔥 Background Overlay */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
+        onClick={() => setIsOpen(false)}
+      />
+
+      {/* 🔥 Mobile Menu */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        className="fixed top-16 left-0 right-0 z-50 md:hidden bg-background border-t border-border shadow-xl"
+      >
+        <div className="container mx-auto px-4 py-4 space-y-1">
+          {navItems.map((item, index) => {
+            const isActive = activeSection === item.href.substring(1)
+            return (
+              <motion.a
+                key={item.name}
+                href={item.href}
+                onClick={(e) => {
+                  e.preventDefault()
+
+                  const target = document.getElementById(item.href.substring(1))
+
+                  if (target) {
+                    const headerOffset = 80
+                    const elementPosition =
+                      target.getBoundingClientRect().top + window.pageYOffset
+                    const offsetPosition = elementPosition - headerOffset
+
+                    window.scrollTo({
+                      top: offsetPosition,
+                      behavior: "smooth",
+                    })
+                  }
+
+                  setTimeout(() => {
+                    setIsOpen(false)
+                  }, 300)
+                }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.05 }}
+                className={`block py-3 px-4 rounded-lg transition-all duration-300 ${
+                  isActive
+                    ? "bg-primary/10 text-primary"
+                    : "text-muted-foreground hover:bg-primary/5 hover:text-primary"
+                }`}
+              >
+                {item.name}
+              </motion.a>
+            )
+          })}
+        </div>
+      </motion.div>
+    </>
+  )}
+</AnimatePresence>
       </motion.header>
 
       {/* Side Navigation Dots */}
