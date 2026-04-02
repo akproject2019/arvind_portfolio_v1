@@ -57,8 +57,7 @@ export function Hero() {
         return (
                 <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
 
-                        {/* Animated Gradient Background */}
-                        <div className="absolute inset-0 animated-gradient opacity-10 z-[3]" />
+                       
 
                         {/* Floating Orbs */}
                         <div className="absolute inset-0 overflow-hidden pointer-events-none z-[3]">
