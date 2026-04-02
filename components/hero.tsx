@@ -8,7 +8,6 @@ import Image from "next/image"
 import { MagneticWrapper } from "./magnetic-wrapper"
 
 const titles = [
-        "Arvind Here",
         "Senior Android Developer",
         "Kotlin Expert",
         "Mobile App Architect",
@@ -80,12 +79,92 @@ export function Hero() {
 
                         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20 sm:pt-24 lg:pt-28">
                                 <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
+                                        {/* Profile Image */}
+                                        <motion.div
+                                                initial={{ opacity: 0, scale: 0.8 }}
+                                                animate={{ opacity: 1, scale: 1 }}
+                                                transition={{ duration: 0.8, delay: 0.3 }}
+                                                className="relative group lg:ml-12"
+                                        >
+                                                <motion.div
+                                                        animate={{ rotate: 360 }}
+                                                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                                                        className="absolute -inset-8 rounded-full border-2 border-dashed border-primary/20"
+                                                />
+                                                <motion.div
+                                                        animate={{ rotate: -360 }}
+                                                        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                                                        className="absolute -inset-12 rounded-full border border-accent/10"
+                                                />
+
+                                                <div className="absolute -inset-4 bg-gradient-to-r from-primary via-accent to-primary rounded-full opacity-75 blur-2xl group-hover:opacity-100 transition-opacity duration-500 animate-pulse" />
+                                                <div className="relative w-64 h-64 sm:w-40 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-primary/50 group-hover:border-primary transition-all duration-700 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-2xl group-hover:shadow-primary/30">
+                                                        <Image
+                                                                src="/profile.png"
+                                                                alt="Arvind Koli"
+                                                                fill
+                                                                className="object-cover object-top transition-all duration-700 group-hover:scale-125"
+                                                                priority
+                                                        />
+                                                </div>
+
+                                               {/* Floating badges */}
+<motion.div
+    animate={{ y: [0, -10, 0] }}
+    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+    className="absolute -right-4 top-1/4 px-3 py-1.5 rounded-full glass border border-primary/30 text-sm font-medium text-primary"
+>
+    Kotlin
+</motion.div>
+<motion.div
+    animate={{ y: [0, -10, 0] }}
+    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+    className="absolute -left-4 bottom-1/3 px-3 py-1.5 rounded-full glass border border-accent/30 text-sm font-medium text-accent"
+>
+    Android
+</motion.div>
+<motion.div
+    animate={{ y: [0, 50, 0] }}
+    transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+    className="absolute -left-12 bottom-1/4 px-3 py-1.5 rounded-full glass border border-accent/30 text-sm font-medium text-accent"
+>
+    Dagger - Hilt
+</motion.div>
+<motion.div
+    animate={{ y: [0, -8, 0] }}
+    transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+    className="absolute -right-8 bottom-1/4 px-3 py-1.5 rounded-full glass border border-primary/30 text-sm font-medium text-primary"
+>
+    Jetpack
+</motion.div>
+<motion.div
+    animate={{ y: [0, 8, 0] }}
+    transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+    className="absolute -right-6 bottom-8 px-3 py-1.5 rounded-full glass border border-primary/30 text-sm font-medium text-primary"
+>
+    Coroutines
+</motion.div>
+<motion.div
+    animate={{ y: [0, -6, 0] }}
+    transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 0.7 }}
+    className="absolute -left-6 top-1/3 px-3 py-1.5 rounded-full glass border border-accent/30 text-sm font-medium text-accent"
+>
+    Room
+</motion.div>
+<motion.div
+    animate={{ y: [0, 5, 0] }}
+    transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
+    className="absolute -right-10 top-1/2 px-3 py-1.5 rounded-full glass border border-primary/30 text-sm font-medium text-primary"
+>
+    Compose
+</motion.div>
+                                        </motion.div>
                                         {/* Content */}
                                         <motion.div
                                                 initial={{ opacity: 0, x: -50 }}
                                                 animate={{ opacity: 1, x: 0 }}
                                                 transition={{ duration: 0.8 }}
-                                                className="flex-1 text-center lg:text-left"
+                                                className="flex-1 text-center lg:text-left lg:ml-20"
                                         >
                                                 <motion.div
                                                         initial={{ opacity: 0, scale: 0 }}
@@ -214,82 +293,31 @@ export function Hero() {
                                                 </motion.div>
                                         </motion.div>
 
-                                        {/* Profile Image */}
-                                        <motion.div
-                                                initial={{ opacity: 0, scale: 0.8 }}
-                                                animate={{ opacity: 1, scale: 1 }}
-                                                transition={{ duration: 0.8, delay: 0.3 }}
-                                                className="relative group"
-                                        >
-                                                <motion.div
-                                                        animate={{ rotate: 360 }}
-                                                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                                                        className="absolute -inset-8 rounded-full border-2 border-dashed border-primary/20"
-                                                />
-                                                <motion.div
-                                                        animate={{ rotate: -360 }}
-                                                        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                                                        className="absolute -inset-12 rounded-full border border-accent/10"
-                                                />
-
-                                                <div className="absolute -inset-4 bg-gradient-to-r from-primary via-accent to-primary rounded-full opacity-75 blur-2xl group-hover:opacity-100 transition-opacity duration-500 animate-pulse" />
-                                                <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-primary/50 group-hover:border-primary transition-all duration-700 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-2xl group-hover:shadow-primary/30">
-                                                        <Image
-                                                                src="/profile.png"
-                                                                alt="Arvind Koli"
-                                                                fill
-                                                                className="object-cover object-top transition-all duration-700 group-hover:scale-125"
-                                                                priority
-                                                        />
-                                                </div>
-
-                                                {/* Floating badges */}
-                                                <motion.div
-                                                        animate={{ y: [0, -10, 0] }}
-                                                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                                                        className="absolute -right-4 top-1/4 px-3 py-1.5 rounded-full glass border border-primary/30 text-sm font-medium text-primary"
-                                                >
-                                                        Kotlin
-                                                </motion.div>
-                                                <motion.div
-                                                        animate={{ y: [0, 10, 0] }}
-                                                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                                                        className="absolute -left-4 bottom-1/3 px-3 py-1.5 rounded-full glass border border-accent/30 text-sm font-medium text-accent"
-                                                >
-                                                        Android
-                                                </motion.div>
-                                                <motion.div
-                                                        animate={{ y: [0, -8, 0] }}
-                                                        transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                                                        className="absolute -right-8 bottom-1/4 px-3 py-1.5 rounded-full glass border border-primary/30 text-sm font-medium text-primary"
-                                                >
-                                                        Jetpack
-                                                </motion.div>
-                                        </motion.div>
+                                        
                                 </div>
                         </div>
 
                         {/* Scroll Indicator */}
                         <motion.a
-                                href="#about"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 1, duration: 0.5 }}
-                                className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors cursor-pointer group z-10"
-                        >
-                                <span className="text-sm">Scroll Down</span>
-                                <motion.div
-                                        animate={{ y: [0, 8, 0] }}
-                                        transition={{ duration: 1.5, repeat: Infinity }}
-                                        className="w-6 h-10 rounded-full border-2 border-current flex items-start justify-center p-1"
-                                >
-                                        <motion.div
-                                                animate={{ y: [0, 12, 0] }}
-                                                transition={{ duration: 1.5, repeat: Infinity }}
-                                                className="w-1.5 h-3 bg-current rounded-full"
-                                        />
-                                </motion.div>
-                        </motion.a>
+    href="#about"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ delay: 1, duration: 0.5 }}
+    className="absolute bottom-4 sm:bottom-6 lg:bottom-10 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors cursor-pointer group z-10 lg:ml-12"
+>
+    <span className="text-sm">Scroll Down</span>
+    <motion.div
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 1.5, repeat: Infinity }}
+        className="w-6 h-10 rounded-full border-2 border-current flex items-start justify-center p-1"
+    >
+        <motion.div
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="w-1.5 h-3 bg-current rounded-full"
+        />
+    </motion.div>
+</motion.a>
                 </section>
         )
 }
