@@ -5,7 +5,6 @@ import { motion } from "framer-motion"
 import { ArrowDown, Download, Mail, ExternalLink, Github, Linkedin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
-import { CodeRain } from "./code-rain"
 import { MagneticWrapper } from "./magnetic-wrapper"
 
 const titles = [
@@ -58,30 +57,6 @@ export function Hero() {
         return (
                 <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
 
-                        {/* ✅ CHANGE 1: Video background — place your video at /public/profile.mp4 */}
-                        {mounted && (
-                                <video
-                                        autoPlay
-                                        loop
-                                        muted
-                                        playsInline
-                                        className="absolute inset-0 w-full h-full object-cover z-0"
-                                >
-                                        <source src="/profile.mp4" type="video/mp4" />
-                                        <source src="/profile.webm" type="video/webm" />
-                                </video>
-                        )}
-
-                        {/* ✅ CHANGE 2: Dark overlay — keeps text readable over the video */}
-                        <div className="absolute inset-0 bg-background/70 backdrop-blur-[2px] z-[1]" />
-
-                        {/* ✅ CHANGE 3: CodeRain z-index bumped above the overlay */}
-                        {mounted && (
-                                <div className="absolute inset-0 z-[2] opacity-40">
-                                        <CodeRain />
-                                </div>
-                        )}
-
                         {/* Animated Gradient Background */}
                         <div className="absolute inset-0 animated-gradient opacity-10 z-[3]" />
 
@@ -104,7 +79,6 @@ export function Hero() {
                                 />
                         </div>
 
-                        {/* ✅ CHANGE 4: Added pt-20 sm:pt-24 lg:pt-28 — pushes content below fixed navbar so "Available" badge never overlaps header */}
                         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20 sm:pt-24 lg:pt-28">
                                 <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
                                         {/* Content */}
