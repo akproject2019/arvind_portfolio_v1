@@ -139,6 +139,47 @@ const projects = [
   },
 ]
 
+// ===== FIXED: Device Mockup Component =====
+function DeviceMockup({ title }: { title: string }) {
+  return (
+    <div className="relative w-24 h-44 mx-auto">
+      {/* Phone Frame */}
+      <div className="absolute inset-0 bg-black rounded-[16px] border-[6px] border-black shadow-2xl overflow-hidden flex flex-col">
+        {/* Notch */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-4 bg-black rounded-b-xl z-20" />
+
+        {/* Screen Content */}
+        <div className="w-full flex-1 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col items-center justify-center px-2 pt-5 pb-3">
+          {/* App Icon */}
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-2 shadow-lg flex-shrink-0">
+            <span className="text-lg font-bold text-white">{title.charAt(0)}</span>
+          </div>
+
+          {/* App Name */}
+          <div className="text-center min-w-0 flex-shrink-0 mb-2">
+            <p className="text-white text-[9px] font-semibold truncate max-w-[80px]">{title.split(" ").slice(0, 2).join(" ")}</p>
+            <p className="text-primary text-[7px] mt-0.5">App</p>
+          </div>
+
+          {/* Dummy UI Elements */}
+          <div className="w-full space-y-1.5 flex-shrink-0">
+            <div className="h-1.5 bg-primary/30 rounded-full mx-1"></div>
+            <div className="h-1.5 bg-primary/20 rounded-full mx-1 w-4/5"></div>
+            <div className="h-1.5 bg-primary/30 rounded-full mx-1 w-3/5"></div>
+          </div>
+        </div>
+
+        {/* Speaker */}
+        <div className="absolute top-4 left-1/2 -translate-x-1/2 w-10 h-0.5 bg-black rounded-full z-30" />
+
+        {/* Shine Effect */}
+        <div className="absolute inset-0 rounded-[16px] opacity-20 bg-gradient-to-br from-white/30 via-transparent to-transparent pointer-events-none" />
+      </div>
+    </div>
+  )
+}
+// ===== END: Device Mockup Component =====
+
 function ProjectCard({ project, index, isInView, onClick }: {
   project: typeof projects[0];
   index: number;
@@ -153,18 +194,20 @@ function ProjectCard({ project, index, isInView, onClick }: {
       layout
     >
       <Card
-        className="glass border-border/50 overflow-hidden hover:border-primary/50 transition-all duration-500 hover:-translate-y-4 hover:scale-[1.04] hover:shadow-2xl hover:shadow-primary/25 group cursor-pointer h-full card-shine"
+        className="glass border-border/50 overflow-hidden hover:border-primary/50 transition-all duration-500 hover:-translate-y-4 hover:scale-[1.04] hover:shadow-2xl hover:shadow-primary/25 group cursor-pointer h-full card-shine !pt-0"
         onClick={onClick}
       >
-        <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <motion.span
-              className="text-5xl font-black text-primary/30 group-hover:scale-125 transition-transform duration-500"
-              whileHover={{ rotate: 5 }}
-            >
-              {project.title.charAt(0)}
-            </motion.span>
-          </div>
+        {/* Device Mockup Container */}
+        <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            whileHover={{ scale: 1.05, rotate: 2 }}
+            className="flex items-center justify-center"
+          >
+            <DeviceMockup title={project.title} />
+          </motion.div>
 
           {/* Hover Overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-primary/95 to-accent/95 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center gap-4">
@@ -189,17 +232,17 @@ function ProjectCard({ project, index, isInView, onClick }: {
           </div>
         </div>
 
-        <CardContent className="p-5">
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-semibold px-3 py-1.5 rounded-full bg-accent/20 text-accent border border-accent/30">
+        <CardContent className="p-3 sm:p-4 md:p-5">
+          <div className="flex items-center justify-between mb-2 sm:mb-3">
+            <span className="text-xs sm:text-xs font-semibold px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-accent/20 text-accent border border-accent/30">
               {project.category}
             </span>
             <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-2 transition-all duration-300" />
           </div>
-          <h3 className="font-bold text-lg mb-2 group-hover:text-primary transition-colors line-clamp-1">
+          <h3 className="font-bold text-base sm:text-lg md:text-xl mb-1 sm:mb-2 group-hover:text-primary transition-colors line-clamp-1 leading-tight">
             {project.title}
           </h3>
-          <p className="text-sm text-muted-foreground mb-2 line-clamp-2">
+          <p className="text-xs sm:text-sm text-muted-foreground mb-1 sm:mb-2 line-clamp-2">
             <span className="font-medium text-foreground/80">Impact:</span> {project.impact}
           </p>
           <div className="flex flex-wrap gap-1.5 mt-4">
@@ -233,10 +276,14 @@ function ProjectModal({ project, onClose }: { project: typeof projects[0] | null
         className="glass border border-border/50 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="relative h-64 bg-gradient-to-br from-primary/30 to-accent/30">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-8xl font-bold text-primary/20">{project.title.charAt(0)}</span>
-          </div>
+        <div className="relative bg-gradient-to-br from-primary/30 to-accent/30 flex items-center justify-center">
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.2 }}
+          >
+            <DeviceMockup title={project.title} />
+          </motion.div>
           <Button
             variant="ghost"
             size="icon"
@@ -304,7 +351,7 @@ export function Projects() {
     : projects.filter(p => p.category === activeCategory)
 
   return (
-    <section id="projects" className="py-20 lg:py-32 relative overflow-hidden bg-secondary/30">
+    <section id="projects" className="lg:py-32 relative overflow-hidden bg-secondary/30">
       {/* Background decoration */}
       <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-br from-accent/5 to-transparent rounded-full blur-3xl" />
 
