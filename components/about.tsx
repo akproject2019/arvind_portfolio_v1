@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
-import { useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Code2, Layers, Cpu, Award } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 
@@ -36,9 +36,29 @@ const highlights = [
 export function About() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const [showLanding, setShowLanding] = useState(true)
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setShowLanding(false), 800)
+    return () => window.clearTimeout(timer)
+  }, [])
 
   return (
-    <section id="about" className="py-20 lg:py-32 relative overflow-hidden">
+    <motion.section
+      id="about"
+      className="py-20 lg:py-32 relative overflow-hidden"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+    >
+      {showLanding && (
+        <motion.div
+          initial={{ opacity: 1, scale: 1.03 }}
+          animate={{ opacity: 0, scale: 0.98 }}
+          transition={{ duration: 0.75, ease: "easeOut" }}
+          className="absolute inset-0 z-20 bg-background/90 backdrop-blur-sm pointer-events-none"
+        />
+      )}
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-primary/5 to-transparent rounded-full blur-3xl" />
 
@@ -113,10 +133,10 @@ export function About() {
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.5 + index * 0.1 }}
                 >
-                  <Card className="glass border-border/50 p-6 text-center hover:border-primary/50 transition-all duration-500 hover:-translate-y-3 hover:scale-105 hover:shadow-xl hover:shadow-primary/15 group cursor-default card-shine">
+                  <Card className="glass border-border/50 p-6 text-center hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/15 group cursor-default card-shine">
                     <CardContent className="p-0">
-                      <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
-                        <item.icon className="h-7 w-7 text-primary group-hover:rotate-12 transition-transform duration-300" />
+                      <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-all duration-300">
+                        <item.icon className="h-7 w-7 text-primary transition-transform duration-300" />
                       </div>
                       <h3 className="font-bold text-xl mb-1 gradient-text">{item.title}</h3>
                       <p className="text-sm text-muted-foreground mb-2">{item.description}</p>
@@ -131,6 +151,6 @@ export function About() {
           </div>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   )
 }

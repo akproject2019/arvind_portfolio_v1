@@ -23,10 +23,11 @@ export function Hero() {
         const [titleIndex, setTitleIndex] = useState(0)
         const [displayText, setDisplayText] = useState("")
         const [isDeleting, setIsDeleting] = useState(false)
-        const [mounted, setMounted] = useState(false)
+        const [showLanding, setShowLanding] = useState(true)
 
         useEffect(() => {
-                setMounted(true)
+                const timer = window.setTimeout(() => setShowLanding(false), 900)
+                return () => clearTimeout(timer)
         }, [])
 
         useEffect(() => {
@@ -54,9 +55,21 @@ export function Hero() {
         }, [displayText, isDeleting, titleIndex])
 
         return (
-                <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-
-                       
+                <motion.section
+                        id="hero"
+                        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+                        initial={{ opacity: 0, y: 24 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.9, ease: "easeOut" }}
+                >
+                        {showLanding && (
+                                <motion.div
+                                        initial={{ opacity: 1, scale: 1.04 }}
+                                        animate={{ opacity: 0, scale: 0.96 }}
+                                        transition={{ duration: 0.8, ease: "easeOut" }}
+                                        className="absolute inset-0 z-[60] bg-background/90 backdrop-blur-sm pointer-events-none"
+                                />
+                        )}
 
                         {/* Floating Orbs */}
                         <div className="absolute inset-0 overflow-hidden pointer-events-none z-[3]">
@@ -318,6 +331,6 @@ export function Hero() {
         />
     </motion.div>
 </motion.a>
-                </section>
+                </motion.section>
         )
 }

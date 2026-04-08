@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { MapPin, Calendar, ChevronDown, ChevronUp, Briefcase } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 
@@ -93,18 +93,18 @@ function ExperienceCard({ experience, index, isInView }: { experience: typeof ex
       {/* Card - Increased width */}
       <div className={`md:w-[calc(50%-1rem)] ${index % 2 === 0 ? "md:mr-auto md:pr-6" : "md:ml-auto md:pl-6"} pl-10 md:pl-0`}>
         <Card 
-          className="glass border-border/50 overflow-hidden hover:border-primary/50 transition-all duration-500 hover:shadow-xl hover:shadow-primary/20 hover:scale-[1.02] hover:-translate-y-2 group cursor-pointer card-shine relative"
+          className="glass border-border/50 overflow-hidden hover:border-primary/50 active:border-primary/50 transition-all duration-500 hover:shadow-xl active:shadow-xl hover:shadow-primary/20 active:shadow-primary/20 hover:scale-[1.02] active:scale-[1.02] hover:-translate-y-2 active:-translate-y-2 group cursor-pointer card-shine relative"
           onClick={() => setIsExpanded(!isExpanded)}
         >
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-primary opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity" />
           <CardContent className="p-6 lg:p-8">
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-accent/10 flex items-center justify-center group-hover:from-primary/30 group-hover:to-accent/20 transition-all duration-300">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-accent/10 flex items-center justify-center group-hover:from-primary/30 group-hover:to-accent/20 group-active:from-primary/30 group-active:to-accent/20 transition-all duration-300">
                   <Briefcase className="h-7 w-7 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-xl group-hover:text-primary transition-colors">
+                  <h3 className="font-bold text-xl group-hover:text-primary group-active:text-primary transition-colors">
                     {experience.company}
                   </h3>
                   <p className="text-accent font-semibold">{experience.role}</p>
@@ -172,9 +172,29 @@ function ExperienceCard({ experience, index, isInView }: { experience: typeof ex
 export function Experience() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const [showLanding, setShowLanding] = useState(true)
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setShowLanding(false), 800)
+    return () => window.clearTimeout(timer)
+  }, [])
 
   return (
-    <section id="experience" className="py-20 lg:py-32 relative overflow-hidden bg-secondary/30">
+    <motion.section
+      id="experience"
+      className="py-20 lg:py-32 relative overflow-hidden bg-secondary/30"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+    >
+      {showLanding && (
+        <motion.div
+          initial={{ opacity: 1, scale: 1.03 }}
+          animate={{ opacity: 0, scale: 0.98 }}
+          transition={{ duration: 0.75, ease: "easeOut" }}
+          className="absolute inset-0 z-20 bg-background/90 backdrop-blur-sm pointer-events-none"
+        />
+      )}
       {/* Background decoration */}
       <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-accent/5 to-transparent rounded-full blur-3xl" />
       <div className="absolute top-1/4 right-0 w-1/3 h-1/3 bg-gradient-to-bl from-primary/5 to-transparent rounded-full blur-3xl" />
@@ -227,6 +247,6 @@ export function Experience() {
           </div>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   )
 }
